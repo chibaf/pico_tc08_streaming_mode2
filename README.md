@@ -1,0 +1,2 @@
+# pico_tc08_streaming_mode2
+function for pico_tc08_streaming_mode
