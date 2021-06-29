@@ -8,4 +8,4 @@ import sys
 from pico_stream import pico_stream
 
 for i in range(0,11):
-  print pico_stream()
+  print (pico_stream())
