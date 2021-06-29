@@ -9,14 +9,12 @@ from picosdk.usbtc08 import usbtc08 as tc08
 from picosdk.functions import assert_pico2000_ok
 import sys
 
-class pico_stream():
-	def __init__(self,temps):
-	    self.temps=[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0]
-	
-	def stream():
+class pico_stream:
+	def stream(self):
 	    # Create chandle and status ready for use
 		chandle = ctypes.c_int16()
 		status = {}
+		temps=[0,0,0,0,0,0,0,0]
 		
 		# open unit
 		status["open_unit"] = tc08.usb_tc08_open_unit()
@@ -52,7 +50,7 @@ class pico_stream():
 		  overflow = ctypes.c_int16()
 		  status["get_temp"] = tc08.usb_tc08_get_temp(chandle, ctypes.byref(temp), ctypes.byref(times_ms_buffer), 15,ctypes.byref(overflow), 1, 0, 1)
 		  assert_pico2000_ok(status["get_temp"])
-		  self.temps[i-1]=temp[1]
+		  temps[i-1]=temp[1]
 		#  print(str(i)+": "+str(temp[1]))
 		#      f.write(str(temp[1]))
 		#      if(i<8):
@@ -61,9 +59,9 @@ class pico_stream():
 		#        f.write("\n")
 		
 		# stop unit
-		 status["stop"] = tc08.usb_tc08_stop(chandle)
-		 assert_pico2000_ok(status["stop"])
+		status["stop"] = tc08.usb_tc08_stop(chandle)
+		assert_pico2000_ok(status["stop"])
 		# close unit
-		 status["close_unit"] = tc08.usb_tc08_close_unit(chandle)
-		 assert_pico2000_ok(status["close_unit"])
-		 return self.temps
+		status["close_unit"] = tc08.usb_tc08_close_unit(chandle)
+		assert_pico2000_ok(status["close_unit"])
+		return temps
