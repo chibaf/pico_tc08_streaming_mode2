@@ -1,10 +1,10 @@
 # pico_tc08_streaming_mode2
 function and class for pico_tc08_streaming_mode
 
-subroutine
+subroutine = pico_stream.py
 
 usage: python3 stream_main.py
 
-class
+class = pico_stream_class.py
 
 usage: python3 stream_main2.py
