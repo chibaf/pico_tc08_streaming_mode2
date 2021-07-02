@@ -9,4 +9,4 @@ from pico_stream_class import pico_stream
 
 stream=pico_stream()
 for i in range(0,11):
-  print (stream.stream()[0])
+  print (stream.stream())
